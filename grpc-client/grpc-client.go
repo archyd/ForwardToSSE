@@ -38,13 +38,10 @@ func main() {
 		dataCh := make(chan string)
 		_, cancel := context.WithCancel(r.Context())
 		defer cancel()
-		w.Write([]byte(":ok\n\n"))
-		w.(http.Flusher).Flush()
 		go func() {
 			for data := range dataCh {
 				w.Write([]byte(data))
 				w.(http.Flusher).Flush()
-
 			}
 		}()
 		for {
