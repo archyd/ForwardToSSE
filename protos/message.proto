@@ -1,0 +1,16 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package protos;
+option go_package="/protos";
+
+message ResponseMessage{
+        string Sometext =1;
+        string Timestamp =2;
+}
+
+//since it's an experiment this service dont need any args (please dont use this on real world use case)
+service TimeService{
+    rpc InitTimer(google.protobuf.Empty) returns (stream ResponseMessage){}
+}   

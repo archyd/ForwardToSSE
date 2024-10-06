@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>SSE Example</title>
+</head>
+<body>
+    <div class=col>
+      <h2>EventSource</h2>
+      <ul id=es-messages>
+      </ul>
+    </div>
+    <script>
+      function subscribe(es, ul) {
+        es.addEventListener('timetick', function (e) {
+          var li = document.createElement("LI");
+          li.appendChild(document.createTextNode(e.data));
+          ul.appendChild(li);
+        });
+      }
+      subscribe(new EventSource('/stream'), document.getElementById('es-messages'));
+    </script>
+</body>
+</html>
